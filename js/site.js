@@ -6,7 +6,7 @@ function getMessage() {
     if (msg == '') {
         alert("You must enter a string!");
     } else {
-        let revMessage = reverseMessageA(msg);
+        let revMessage = reverseMessageB(msg);
         displayMessage(revMessage);
     }
 }
@@ -26,6 +26,11 @@ function reverseMessageA(msg) {
     }
     return revMessage;
 }
+
+function reverseMessageB(msg) {
+    msg = msg.toLowerCase().replace(/[^a-z]+/g,"");
+    return msg === msg.split("").reverse().join("")
+ }
 
 // Final Step - View
 function displayMessage(message) {
