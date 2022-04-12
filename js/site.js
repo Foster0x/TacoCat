@@ -19,6 +19,11 @@ function reverseMessageA(msg) {
         let char = msg[index];
         revMessage += char;
     }
+    if (msg == revMessage) {
+        alert("This is a palindrome!")
+    } else {
+        alert("This is not a palindrome...")
+    }
     return revMessage;
 }
 
