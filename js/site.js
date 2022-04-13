@@ -6,8 +6,11 @@ function getMessage() {
     if (msg == '') {
         alert("You must enter a string!");
     } else {
-        let revMessage = reverseMessageB(msg);
-        displayMessage(revMessage);
+        msg = msg.toUpperCase();
+        const regex = /[^a-z0-9]/gi;
+        msg = msg.replace(regex, "");
+        let palinObj = reverseMessageC(msg);
+        displayMessage(palinObj);
     }
 }
 
@@ -28,12 +31,35 @@ function reverseMessageA(msg) {
 }
 
 function reverseMessageB(msg) {
-    msg = msg.toLowerCase().replace(/[^a-z]+/g,"");
+    msg = msg.toLowerCase().replace(/[^a-z]+/g, "");
     return msg === msg.split("").reverse().join("")
- }
+}
+
+function reverseMessageC(originalWord) {
+    let revWord = "";
+    let returnObj = {};
+    revWord = originalWord.split("").reverse().join("");
+
+if (originalWord == revWord) {
+    returnObj.message = `This is a palindrome!`;
+    returnObj.IsPalindrome = true;
+} else {
+    returnObj.message = `This is not a palindrome...`;
+    returnObj.IsPalindrome = false;
+}
+
+returnObj.originalWord = originalWord;
+returnObj.reversedWord = revWord;
+
+// IsPalindrome
+// originalWord
+// reversedWord
+// message
+return returnObj;
+}
 
 // Final Step - View
-function displayMessage(message) {
+function displayMessage(palinObj) {
     element = document.getElementById("results");
-    element.innerHTML = message;
+    element.innerHTML = `${palinObj.message} - ${palinObj.originalWord}`;
 }
